@@ -3,6 +3,7 @@ import User from "../models/user";
 import { UserAttributes } from "../types";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+import { publicIp } from "public-ip";
 
 function generateToken(Email) {
   //console.log("Email", Email)
@@ -10,17 +11,19 @@ function generateToken(Email) {
   const token = jwt.sign({ Email }, `${process.env.TOKEN_SECRET}`);
   return token;
 }
+console.log("---------------",publicIp);
 
 async function signin(attrs) {
   const user: any = await User.findOne({ where: { Email: attrs.Email } });
   //console.log("attrs--------------------------",attrs);
-  // console.log("user---------------------------", user);
+  
+  console.log("user---------------------------", user);
 
   // const hash = bcrypt.hashSync(attrs.password, 10);
   // console.log("hash--------------------------", hash);
   const checkPassword = bcrypt.compareSync(attrs.password, user.password);
 
-  //console.log("checkPassword---------------------------", checkPassword);
+  console.log("checkPassword---------------------------", checkPassword);
 
   if (!checkPassword) {
     throw new Error("Email or password is invalid");
@@ -35,6 +38,8 @@ async function signin(attrs) {
 }
 
 function add(attrs) {
+  console.log("------",attrs);
+  
   return User.create(attrs);
 }
 

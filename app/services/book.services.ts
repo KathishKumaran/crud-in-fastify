@@ -62,19 +62,19 @@ async function listAndPaginate(query: any) {
 }
 
 async function edit(attrs: BookAttributes, bookId: number) {
-  const data = Book.update(attrs, {
-    where: {
-      id: bookId,
-    },
-  });
+  // const data = Book.update(attrs, {
+  //   where: {
+  //     id: bookId,
+  //   },
+  // });
 }
 
 async function erase(bookId: number) {
-  return Book.destroy({
-    where: {
-      id: bookId,
-    },
-  });
+  // return Book.destroy({
+  //   where: {
+  //     id: bookId,
+  //   },
+  // });
 }
 
 export { add, edit, erase, listAndPaginate };

@@ -3,6 +3,7 @@ import { add, edit, erase, listAndPaginate } from "../services/book.services";
 import { BookAttributes } from "../types";
 import { UserParams } from "../types/user-controller";
 import { BookParams } from "../types/book-controller";
+import UserPolicy from "../policies/user.policy";
 
 function create(req: FastifyRequest, reply: FastifyReply) {
   const attrs = req.body as BookAttributes;
@@ -31,8 +32,11 @@ function create(req: FastifyRequest, reply: FastifyReply) {
 // }
 
 function list(req: FastifyRequest, reply: FastifyReply) {
+  console.log("-----req-----", req.currentUser);
+
   const query = req.query;
-  if (/* book.list() */ 1) {
+  const policy = new UserPolicy(req.currentUser);
+  if (policy.canList) {
     listAndPaginate(query)
       .then((landingPages) => {
         reply.code(200).send(landingPages);

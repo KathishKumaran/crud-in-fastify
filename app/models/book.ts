@@ -3,6 +3,7 @@
 import { DataTypes, Sequelize } from "sequelize";
 //import { BookStatic } from "../types";
 import db from ".";
+import { BookStatic } from "../types";
 import User from "./user";
 
 const modelOPtions = {
@@ -40,8 +41,8 @@ const attributes = {
   },
 };
 
-function bookModelFactory(sequelize: Sequelize) {
-  return sequelize.define("Book", attributes, modelOPtions);
+function bookModelFactory(sequelize: Sequelize): BookStatic {
+  return sequelize.define("Book", attributes, modelOPtions) as BookStatic;
 }
 
 const Book = bookModelFactory(db);

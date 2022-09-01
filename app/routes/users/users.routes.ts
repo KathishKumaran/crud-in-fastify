@@ -23,7 +23,7 @@ function userRoutes(
 ) {
   fastify.post("/user", userLoginRouterOpts, login);
   fastify.get("/user", userListRouterOpts, list);
-  fastify.post("/user/:id", userCreateRouterOpts, create);
+  fastify.post("/users", userCreateRouterOpts, create);
   fastify.put("/user/:id", userUpdateRouterOpts, update);
   fastify.delete("/user/:id", userDeleteRouterOpts, destroy);
   next();

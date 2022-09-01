@@ -25,6 +25,7 @@ module.exports = {
       }),
       queryInterface.addColumn("Users", "mark_as_signin", {
         type: Sequelize.DATE,
+        allowNull: true,
       }),
     ]);
   },

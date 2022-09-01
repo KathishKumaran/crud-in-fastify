@@ -1,4 +1,5 @@
 import { BuildOptions, Model } from "sequelize";
+import { BookInstance } from "./book";
 
 export interface UserAttributes {
   Name: string;
@@ -9,8 +10,14 @@ export interface UserAttributes {
   updatedAt: string;
   token: string;
 }
+export interface UserInstance
+  extends Model<UserAttributes>,
+    UserAttributes {
+  book?: BookInstance;
 
-export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
+  isAdmin(): boolean;
+  isAgent(): boolean;
+}
 
 export type UserStatic = typeof Model & {
   new (values?: object, options?: BuildOptions): UserInstance;

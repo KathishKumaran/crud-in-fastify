@@ -18,6 +18,8 @@ function login(req: FastifyRequest, reply: FastifyReply) {
 
 function create(req: FastifyRequest, reply: FastifyReply) {
   //console.log("user create attributes are", req.body);
+  console.log("--------",req.body);
+  
   const attrs = req.body as UserAttributes;
   const { id } = req.params as { id: number };
   return add(attrs)
