@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
-require("dotenv").config();
+// require("dotenv").config();
+import dotenv from 'dotenv'
+dotenv.config()
 const env = process.env.NODE_ENV || "development";
 // tslint:disable-next-line: no-var-requires
 const config = require(`${__dirname}/../../db/config.json`)[env];

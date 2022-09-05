@@ -52,7 +52,13 @@ function userModelFactory(sequelize: Sequelize): UserStatic {
 
 const User = userModelFactory(db);
 // console.log(User)
-// User.hasMany(Book, { foreignKey: "userId", as: "book" });
+
+User.hasMany(Book, { foreignKey: "userId", as: "book" });
+
+Book.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'users'
+})
 
 User.prototype.isAdmin = function (): boolean {
   return this.role === USER_ROLE.admin;

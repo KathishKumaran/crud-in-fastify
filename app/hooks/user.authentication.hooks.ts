@@ -9,8 +9,10 @@ import { request } from "http";
 //     currentUser: UserInstance;
 //   }
 // }
-const { verify } = require("jsonwebtoken");
-const dotenv = require("dotenv");
+// const { verify } = require("jsonwebtoken");
+import { verify } from "jsonwebtoken";
+// const dotenv = require("dotenv");
+import dotenv from 'dotenv'
 //console.log("db", db);
 
 const JWT_SECRET_KEY = process.env.TOKEN_SECRET;

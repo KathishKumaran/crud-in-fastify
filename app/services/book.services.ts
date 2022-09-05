@@ -5,7 +5,7 @@ import { BookAttributes } from "../types";
 import { Q_MINIMUM_SIZE } from "../config/constants";
 
 import { paginate, paginatorResult } from "../lib/paginator-result";
-import { globalSearchQuery } from "../queries";
+import { globalSearchQuery, columnSearchQuery } from "../queries";
 import User from "../models/user";
 import { Sequelize } from "sequelize";
 
@@ -27,12 +27,14 @@ async function listAndPaginate(query: any) {
   const limit = perPage;
   const queries =
     size(query.q) >= Q_MINIMUM_SIZE ? globalSearchQuery(query.q) : {};
+  const columnQueries = columnSearchQuery(query);
   console.log("0-----------QUERIES", queries);
   const listOfBooks = await Book.findAndCountAll({
     limit,
     offset,
     where: {
       ...queries,
+      ...columnQueries,
     },
     include: [
       {

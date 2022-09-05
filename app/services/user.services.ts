@@ -1,8 +1,10 @@
 import Book from "../models/book";
 import User from "../models/user";
 import { UserAttributes } from "../types";
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcrypt");
+import bcrypt from 'bcrypt'
+// const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 import { publicIp } from "public-ip";
 
 function generateToken(Email) {
@@ -11,7 +13,7 @@ function generateToken(Email) {
   const token = jwt.sign({ Email }, `${process.env.TOKEN_SECRET}`);
   return token;
 }
-console.log("---------------",publicIp);
+// console.log("---------------",publicIp);
 
 async function signin(attrs) {
   const user: any = await User.findOne({ where: { Email: attrs.Email } });

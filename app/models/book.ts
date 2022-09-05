@@ -47,9 +47,9 @@ function bookModelFactory(sequelize: Sequelize): BookStatic {
 
 const Book = bookModelFactory(db);
 
-Book.belongsTo(User, {
-  foreignKey: "userId",
-  as: "users",
-});
+// Book.belongsTo(User, {
+//   foreignKey: "userId",
+//   as: "users",
+// });
 
 export default Book;

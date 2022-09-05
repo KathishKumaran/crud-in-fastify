@@ -37,6 +37,7 @@ function list(req: FastifyRequest, reply: FastifyReply) {
       reply.status(200).send(user);
     })
     .catch((err: Error) => {
+      console.log(err)
       reply.status(400).send({ errors: ["Errors !!"] });
     });
 }
